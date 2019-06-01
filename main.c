@@ -17,7 +17,7 @@ static char *Usage =
 "\n"
 "optional arguments:\n"
 "  -h       show this help message and exit\n"
-"  -r str   strをそのまま送信する (通信に必要なヘッダは付ける)\n"
+"  -C str   strをそのまま送信する (通信に必要なヘッダは付ける)\n"
 "  -T       転送確認\n"
 "\n";
 
@@ -48,7 +48,7 @@ static void get_option(struct Options_ *opt, int argc, char *argv[])
 	opt->action = ACT_NONE;
 	opt->str = NULL;
 
-	while ((c = getopt(argc, argv, "hTr:")) != -1) {
+	while ((c = getopt(argc, argv, "hTC:")) != -1) {
 		switch (c) {
 		case 'h':
 			help();
@@ -56,7 +56,7 @@ static void get_option(struct Options_ *opt, int argc, char *argv[])
 		case 'T':
 			opt->action = ACT_TRANSFER_TEST;
 			break;
-		case 'r':
+		case 'C':
 			opt->action = ACT_RAW_CMD;
 			opt->str = optarg;
 			break;
