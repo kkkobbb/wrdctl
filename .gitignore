@@ -1,0 +1,7 @@
+*.o
+*.exe
+*.stackdump
+*.core
+*.bak
+_*
+._*
