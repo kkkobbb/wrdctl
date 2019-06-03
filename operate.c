@@ -79,9 +79,12 @@ static void cmd_test(simple_usb *su)
 
 /*
  * USB制御
+ *
+ * エラー時、非ゼロを返す
  */
 int operate(struct Options_ *opt)
 {
+	int ret = 0;
 	simple_usb *su;
 
 	// usbデバイスオープン
@@ -104,12 +107,13 @@ int operate(struct Options_ *opt)
 		cmd_raw(su, opt->str, strlen(opt->str));
 		break;
 	default:
-		return 1;
+		error_only("unknown action");
+		ret = 1;
 	}
 
 	// usbデバイスクローズ
 	susb_close(su);
 
-	return 0;
+	return ret;
 }
 
